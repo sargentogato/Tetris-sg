@@ -19,7 +19,7 @@ Thanks to Javier Muñiz(javiermunizyt on github) for his excelent HTML5 and Java
 * Down
 * To rotate the piece press **Space bar**
 
-When you lose the game will reset again. For the moment there aren't levels or points. 
+When you lose the game will reset again. For the moment there aren't levels or points. Buttons are not working. 
 
 **by Sargentogato**
 

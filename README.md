@@ -1,4 +1,4 @@
-# Personal project
+# Tetris Game - Sargentogato
 
 To make the board, it has been used a canvas.
 

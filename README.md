@@ -12,4 +12,15 @@ Enjoy and share. Marlon Velásquez
 
 Thanks to Javier Muñiz(javiermunizyt on github) for his excelent HTML5 and JavaScript course, without it perhaps it wouldn't be posible this tetris.
 
+### How to play
+**To move the pieces, you just need the arrow buttons**
+Left
+Right
+Down
+
+To rotate the piece press **Space bar**.
+
+When you lose the game will reset again. For the moment there aren't any level. The obtained point are not stored. 
+
 **by Sargentogato**
+

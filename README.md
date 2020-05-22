@@ -1,5 +1,3 @@
-<div class="main-box">
-
 # Tetris Game - Sargentogato
 
 ## Index
@@ -20,6 +18,14 @@ If you want to clone the repo to play around, improve the code or just to play, 
 Enjoy and share. Marlon Velásquez
 
 ## How to Play
+The only you have to do is, download the repo. Inside the folder you will find the follow structure
+-script folder /tetris.js and pieces.js
+-style folder / style.css
+-index.html on the main folder
+
+Don't worry for the rest of the files. 
+
+The only you have to do is, download the repo and ones done, get into the folder, unzip the file downloaded and you will get a folder callThe only you have to do is, download the repo and when is downloaded,  unzip the file downloaded and you will get a folder call Tetris-sg-master, get into the folder and you will have the index.html, run the file and the game will start Tetris-sg-master
 
 **To move the pieces, you just need the arrow buttons**
 
@@ -46,3 +52,5 @@ Enjoy and share. Marlon Velásquez
 ## Thanks
 
 Thanks to Javier Muñiz(javiermunizyt on github) for his excelent HTML5 and JavaScript course, without it perhaps it wouldn't be posible this tetris.
+
+**by Sargentogato **

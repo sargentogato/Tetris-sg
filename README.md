@@ -1,18 +1,25 @@
+<div class="main-box">
+
 # Tetris Game - Sargentogato
+
+## Index
+
+1.  [Intro](#intro "intro")
+2.  [How to play](#how-to-play)
+3.  [Upgrades](#upgrades)
+4.  [Changes](#changes)
+5.  [Thanks](#thanks)
+
+## Intro
 
 To make the board, it has been used a canvas.
 
-This is an Alfa version. I will try to upload a refactor in some days and I will try to make small improvements when I will have time.
-
-I didn't spend to much time on the design. It is one of the things that I will improve in a future version.
-
+This is an **Alfa** version. I will try to upload a refactor in some days and I will try to make small improvements when I will have time. I didn't spend to much time on the design. It is one of the things that I will improve in a future version.  
 If you want to clone the repo to play around, improve the code or just to play, go ahead, I just ask you to mention the authorship :).
 
 Enjoy and share. Marlon Velásquez
 
-Thanks to Javier Muñiz(javiermunizyt on github) for his excelent HTML5 and JavaScript course, without it perhaps it wouldn't be posible this tetris.
-
-### How to play
+## How to Play
 
 **To move the pieces, you just need the arrow buttons**
 
@@ -21,6 +28,21 @@ Thanks to Javier Muñiz(javiermunizyt on github) for his excelent HTML5 and Java
 - Down
 - To rotate the piece press **Space bar**
 
-When you lose the game will reset again. For the moment there aren't levels or points. Buttons are not working.
+## Upgrades
 
-**by Sargentogato**
+- It has been added two buttons(**still not working**) start and play again
+
+## Changes
+
+#### 22 may 2020
+
+- Now the board array is done automatically with the new boardConstructor function.
+- It has been renamed all to English.
+- It has been done some refactor to:
+  - The drawPieces method (swith statement instead of if statement)
+  - the drawBoard function (swith statement instead of if statement)
+- It has been separated the pieces variable to a new file call pieces.js
+
+## Thanks
+
+Thanks to Javier Muñiz(javiermunizyt on github) for his excelent HTML5 and JavaScript course, without it perhaps it wouldn't be posible this tetris.

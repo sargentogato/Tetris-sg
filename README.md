@@ -1,4 +1,5 @@
 # Tetris Game - Sargentogato
+Yo can play directly here https://sargentogato.github.io/Tetris-sg/
 
 ## Index
 

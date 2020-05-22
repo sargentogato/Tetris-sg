@@ -39,8 +39,8 @@ Enjoy and share. Marlon Velásquez
 - Now the board array is done automatically with the new boardConstructor function.
 - It has been renamed all to English.
 - It has been done some refactor to:
-  - The drawPieces method (swith statement instead of if statement)
-  - the drawBoard function (swith statement instead of if statement)
+  - The drawPieces method (switch statement instead of if statement)
+  - the drawBoard function (switch statement instead of if statement)
 - It has been separated the pieces variable to a new file call pieces.js
 
 ## Thanks

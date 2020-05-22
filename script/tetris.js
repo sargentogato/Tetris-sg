@@ -5,48 +5,47 @@ let canvas;
 let ctx;
 let FPS = 50;
 
-let anchoCanvas = 400;
-let altoCanvas = 640;
+let canvasWidth = 400;
+let canvasHeight = 640;
 
-let anchoTablero = 10;
-let altoTablero = 20;
+let boardWidth = 10;
+let boardHeight = 20;
 
-let margenSuperior = 4; // Para el board
+let topMargin = 4; // Para el board
 
-let anchoF = 40;
-let altoF = 40;
+let pieceWidth = 40;
+let pieceHeight = 40;
 
-let rojo = "#FF0000";
-let morado = "#800080";
-let naranja = "#FF8c00";
-let amarillo = "#ffd700";
-let verde = "#008000";
+let red = "#FF0000";
+let purple = "#800080";
+let orange = "#FF8c00";
+let yellow = "#ffd700";
+let green = "#008000";
 let cyan = "#00ced1";
-let azul = "#0000cd";
+let blue = "#0000cd";
 
-let tablero = [
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-];
+let board = [];
+
+/*
+ * We need two extra lines, one each side, they are the limit of the canvas
+ * The array has 21 rows and 12 columns but we just need 20 rows and 10 columns
+ * the rest are the border of the array.
+ */
+function boardConstructor() {
+  for (let x = 0; x < boardHeight + 1; x++) {
+    let arrow = [];
+    let column = null;
+    for (let y = 0; y < boardWidth + 2; y++) {
+      if (x == boardHeight || y == 0 || y == boardWidth + 1) {
+        column = 1;
+      } else {
+        column = 0;
+      }
+      arrow.push(column);
+    }
+    board.push(arrow);
+  }
+}
 
 // (12 x 21)
 let tableroCopia = [
@@ -73,452 +72,267 @@ let tableroCopia = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-var fichaGrafico = [
-  [
-    [
-      [0, 0, 0, 0],
-      [0, 1, 1, 0],
-      [0, 1, 1, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 0],
-      [0, 1, 1, 0],
-      [0, 1, 1, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 0],
-      [0, 1, 1, 0],
-      [0, 1, 1, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 0],
-      [0, 1, 1, 0],
-      [0, 1, 1, 0],
-      [0, 0, 0, 0],
-    ],
-  ],
-
-  [
-    [
-      [0, 0, 0, 0],
-      [2, 2, 2, 2],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 2, 0],
-      [0, 0, 2, 0],
-      [0, 0, 2, 0],
-      [0, 0, 2, 0],
-    ],
-
-    [
-      [0, 0, 0, 0],
-      [2, 2, 2, 2],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 2, 0],
-      [0, 0, 2, 0],
-      [0, 0, 2, 0],
-      [0, 0, 2, 0],
-    ],
-  ],
-
-  [
-    [
-      [0, 0, 0, 0],
-      [0, 0, 3, 3],
-      [0, 3, 3, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 3, 0],
-      [0, 0, 3, 3],
-      [0, 0, 0, 3],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 0],
-      [0, 0, 3, 3],
-      [0, 3, 3, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 3, 0],
-      [0, 0, 3, 3],
-      [0, 0, 0, 3],
-      [0, 0, 0, 0],
-    ],
-  ],
-
-  [
-    [
-      [0, 0, 0, 0],
-      [0, 4, 4, 0],
-      [0, 0, 4, 4],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 4],
-      [0, 0, 4, 4],
-      [0, 0, 4, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 0],
-      [0, 4, 4, 0],
-      [0, 0, 4, 4],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 4],
-      [0, 0, 4, 4],
-      [0, 0, 4, 0],
-      [0, 0, 0, 0],
-    ],
-  ],
-
-  [
-    [
-      [0, 0, 0, 0],
-      [0, 5, 5, 5],
-      [0, 5, 0, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 5, 0],
-      [0, 0, 5, 0],
-      [0, 0, 5, 5],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 0, 5],
-      [0, 5, 5, 5],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 5, 5, 0],
-      [0, 0, 5, 0],
-      [0, 0, 5, 0],
-      [0, 0, 0, 0],
-    ],
-  ],
-
-  [
-    [
-      [0, 0, 0, 0],
-      [0, 6, 6, 6],
-      [0, 0, 0, 6],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 6, 6],
-      [0, 0, 6, 0],
-      [0, 0, 6, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 6, 0, 0],
-      [0, 6, 6, 6],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 6, 0],
-      [0, 0, 6, 0],
-      [0, 6, 6, 0],
-      [0, 0, 0, 0],
-    ],
-  ],
-
-  [
-    [
-      [0, 0, 0, 0],
-      [0, 7, 7, 7],
-      [0, 0, 7, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 7, 0],
-      [0, 0, 7, 7],
-      [0, 0, 7, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 7, 0],
-      [0, 7, 7, 7],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-    ],
-
-    [
-      [0, 0, 7, 0],
-      [0, 7, 7, 0],
-      [0, 0, 7, 0],
-      [0, 0, 0, 0],
-    ],
-  ],
-];
-
 /******************************Creando objeto********************************/
 
-let pieza;
+let piece;
 
-var objPieza = function () {
+var objectPiece = function () {
   // Creación de un objeto
   this.x = 4;
   this.y = 0;
-  this.angulo = 0;
-  this.tipo = 0;
-  this.retraso = 50;
-  this.fotograma = 0;
+  this.angle = 0;
+  this.type = 0;
+  this.delay = 50;
+  this.frame = 0;
 
-  this.nueva = function () {
-    this.tipo = Math.floor(Math.random() * 7);
+  this.new = function () {
+    this.type = Math.floor(Math.random() * 7);
     this.x = 4;
     this.y = 0;
   };
 
-  this.dibuja = function () {
+  this.drawPiece = function () {
     for (let y = 0; y < 4; y++) {
       for (let x = 0; x < 4; x++) {
-        if (fichaGrafico[this.tipo][this.angulo][y][x] != 0) {
-          if (fichaGrafico[this.tipo][this.angulo][y][x] == 1) {
-            ctx.fillStyle = rojo;
+        if (pieces[this.type][this.angle][y][x] != 0) {
+          let color = null;
+          switch (pieces[this.type][this.angle][y][x]) {
+            case 1:
+              color = red;
+              break;
+            case 2:
+              color = purple;
+              break;
+            case 3:
+              color = orange;
+              break;
+            case 4:
+              color = yellow;
+              break;
+            case 5:
+              color = green;
+              break;
+            case 6:
+              color = cyan;
+              break;
+            case 7:
+              color = blue;
+              break;
+
+            default:
+              break;
           }
-          if (fichaGrafico[this.tipo][this.angulo][y][x] == 2) {
-            ctx.fillStyle = morado;
-          }
-          if (fichaGrafico[this.tipo][this.angulo][y][x] == 3) {
-            ctx.fillStyle = naranja;
-          }
-          if (fichaGrafico[this.tipo][this.angulo][y][x] == 4) {
-            ctx.fillStyle = amarillo;
-          }
-          if (fichaGrafico[this.tipo][this.angulo][y][x] == 5) {
-            ctx.fillStyle = verde;
-          }
-          if (fichaGrafico[this.tipo][this.angulo][y][x] == 6) {
-            ctx.fillStyle = cyan;
-          }
-          if (fichaGrafico[this.tipo][this.angulo][y][x] == 7) {
-            ctx.fillStyle = azul;
-          }
-          ctx.fillRect((this.x + x - 1) * anchoF, (this.y + y - margenSuperior) * altoF, anchoF, altoF);
+          ctx.fillStyle = color;
+          ctx.fillRect((this.x + x - 1) * pieceWidth, (this.y + y - topMargin) * pieceHeight, pieceWidth, pieceHeight);
         }
       }
     }
   };
 
-  this.caer = function () {
-    if (this.fotograma < this.retraso) {
-      this.fotograma++;
+  this.fall = function () {
+    if (this.frame < this.delay) {
+      this.frame++;
     } else {
-      if (this.colision(this.angulo, this.y + 1, this.x) == false) {
+      if (this.collision(this.angle, this.y + 1, this.x) == false) {
         this.y++;
-        this.fotograma = 0;
+        this.frame = 0;
       } else {
-        this.fijar();
-        this.nueva();
-        this.limpiarFilas();
+        this.fix();
+        this.new();
+        this.cleanRows();
 
-        if (this.compruebaSiPierde()) {
-          resetearTablero();
+        if (this.checkIfYouLose()) {
+          resetBoard();
         }
       }
     }
   };
 
-  this.colision = function (anguloNuevo, yNueva, xNueva) {
-    let resultado = false;
+  this.collision = function (newAngle, yNew, xNew) {
+    let result = false;
 
     for (let y = 0; y < 4; y++) {
       for (let x = 0; x < 4; x++) {
-        if (fichaGrafico[this.tipo][anguloNuevo][y][x] > 0) {
-          if (tablero[yNueva + y][xNueva + x] > 0) {
-            resultado = true;
+        if (pieces[this.type][newAngle][y][x] > 0) {
+          if (board[yNew + y][xNew + x] > 0) {
+            result = true;
           }
         }
       }
     }
-    return resultado;
+    return result;
   };
 
   this.rotar = function () {
-    let anguloNuevo = this.angulo;
-    if (anguloNuevo < 3) {
-      anguloNuevo++;
+    let newAngle = this.angle;
+    if (newAngle < 3) {
+      newAngle++;
     } else {
-      anguloNuevo = 0;
+      newAngle = 0;
     }
 
-    if (this.colision(anguloNuevo, this.y, this.x) == false) {
-      this.angulo = anguloNuevo;
+    if (this.collision(newAngle, this.y, this.x) == false) {
+      this.angle = newAngle;
     }
   };
 
-  this.izquierda = function () {
-    if (this.colision(this.angulo, this.y, this.x - 1) == false) {
+  this.left = function () {
+    if (this.collision(this.angle, this.y, this.x - 1) == false) {
       this.x--;
-      log("Izquierda");
     }
   };
 
-  this.derecha = function () {
-    if (this.colision(this.angulo, this.y, this.x + 1) == false) {
+  this.right = function () {
+    if (this.collision(this.angle, this.y, this.x + 1) == false) {
       this.x++;
       log("Derecha");
     }
   };
 
-  this.abajo = function () {
-    if (this.colision(this.angulo, this.y + 1, this.x) == false) {
+  this.down = function () {
+    if (this.collision(this.angle, this.y + 1, this.x) == false) {
       this.y++;
       log("Abajo");
     }
   };
 
-  this.compruebaSiPierde = function () {
-    let pierde = false;
-    for (let x = 1; x < anchoTablero + 1; x++) {
-      if (tablero[2][x] > 0) {
-        pierde = true;
+  this.checkIfYouLose = function () {
+    let lose = false;
+    for (let x = 1; x < boardWidth + 1; x++) {
+      if (board[2][x] > 0) {
+        lose = true;
       }
     }
-    return pierde;
+    return lose;
   };
 
-  this.limpiarFilas = function () {
-    let filaCompleta = true;
+  this.cleanRows = function () {
+    let fullRow = true;
 
-    for (let y = margenSuperior; y < altoTablero; y++) {
-      filaCompleta = true;
+    for (let y = topMargin; y < boardHeight; y++) {
+      fullRow = true;
 
-      for (let x = 1; x <= anchoTablero; x++) {
-        if (tablero[y][x] == 0) {
-          filaCompleta = false;
+      for (let x = 1; x <= boardWidth; x++) {
+        if (board[y][x] == 0) {
+          fullRow = false;
         }
       }
 
-      if (filaCompleta == true) {
+      if (fullRow == true) {
         log("FIlA LLENA");
-        for (let x = 1; x <= anchoTablero; x++) {
-          tablero[y][x] = 0;
+        for (let x = 1; x <= boardWidth; x++) {
+          board[y][x] = 0;
         }
       }
     }
   };
 
-  this.fijar = function () {
+  /************************fix pieces************************/
+
+  this.fix = function () {
     for (let y = 0; y < 4; y++) {
       for (let x = 0; x < 4; x++) {
-        if (fichaGrafico[this.tipo][this.angulo][y][x] > 0) {
-          tablero[this.y + y][this.x + x] = fichaGrafico[this.tipo][this.angulo][y][x];
+        if (pieces[this.type][this.angle][y][x] > 0) {
+          board[this.y + y][this.x + x] = pieces[this.type][this.angle][y][x];
         }
       }
     }
   };
 
-  this.nueva();
+  this.new();
   log("Pieza Creada");
 }; // end object
 
-function resetearTablero() {
+/************************Resete Board***********************/
+
+function resetBoard() {
   for (let y = 0; y < 21; y++) {
     for (let x = 0; x < 12; x++) {
-      tablero[y][x] = tableroCopia[y][x];
+      board[y][x] = tableroCopia[y][x];
     }
   }
   log("RESET");
 }
 
-function dibujarTablero() {
-  for (let y = margenSuperior; y < altoTablero; y++) {
-    for (let x = 1; x < anchoTablero + 1; x++) {
-      if (tablero[y][x] != 0) {
-        if (tablero[y][x] == 1) {
-          ctx.fillStyle = rojo;
+/************************Draw Board************************/
+
+function drawBoard() {
+  for (let y = topMargin; y < boardHeight; y++) {
+    for (let x = 1; x < boardWidth + 1; x++) {
+      let color = null;
+      if (board[y][x] != 0) {
+        switch (board[y][x]) {
+          case 1:
+            color = red;
+            break;
+          case 2:
+            color = purple;
+            break;
+          case 3:
+            color = orange;
+            break;
+          case 4:
+            color = yellow;
+            break;
+          case 5:
+            color = green;
+            break;
+          case 6:
+            color = cyan;
+            break;
+          case 7:
+            color = blue;
+            break;
+
+          default:
+            break;
         }
-        if (tablero[y][x] == 2) {
-          ctx.fillStyle = morado;
-        }
-        if (tablero[y][x] == 3) {
-          ctx.fillStyle = naranja;
-        }
-        if (tablero[y][x] == 4) {
-          ctx.fillStyle = amarillo;
-        }
-        if (tablero[y][x] == 5) {
-          ctx.fillStyle = verde;
-        }
-        if (tablero[y][x] == 6) {
-          ctx.fillStyle = cyan;
-        }
-        if (tablero[y][x] == 7) {
-          ctx.fillStyle = azul;
-        }
-        ctx.fillRect((x - 1) * anchoF, (y - margenSuperior) * altoF, anchoF, altoF);
+        ctx.fillStyle = color;
+        ctx.fillRect((x - 1) * pieceWidth, (y - topMargin) * pieceHeight, pieceWidth, pieceHeight);
       }
     }
   }
 }
 
-function inicializaTeclado() {
+/************************Initialize keyboard************************/
+
+function initializeKeyboard() {
   document.addEventListener("keydown", (tecla) => {
-    if (tecla.keyCode == 32) {
-      pieza.rotar();
-    }
-    if (tecla.keyCode == 40) {
-      pieza.abajo();
-    }
-    if (tecla.keyCode == 37) {
-      pieza.izquierda();
-    }
-    if (tecla.keyCode == 39) {
-      pieza.derecha();
+    switch (tecla.keyCode) {
+      case 32:
+        piece.rotar();
+        break;
+      case 40:
+        piece.down();
+        break;
+      case 37:
+        piece.left();
+        break;
+      case 39:
+        piece.right();
+        break;
+
+      default:
+        break;
     }
   });
 }
 
-function borrarCanvas() {
-  canvas.width = anchoCanvas;
-  canvas.height = altoCanvas;
+function cleanCanvas() {
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
 }
 
 (function inicializa() {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
 
-  canvas.style.width = `${anchoCanvas}px`;
-  canvas.style.height = `${altoCanvas}px`;
+  canvas.style.width = `${canvasWidth}px`;
+  canvas.style.height = `${canvasHeight}px`;
 
-  pieza = new objPieza();
-  inicializaTeclado();
+  piece = new objectPiece();
+  initializeKeyboard();
+  boardConstructor();
 
   setInterval(() => {
     principal();
@@ -526,8 +340,10 @@ function borrarCanvas() {
 })();
 
 function principal() {
-  borrarCanvas();
-  dibujarTablero();
-  pieza.dibuja();
-  pieza.caer();
+  cleanCanvas();
+  drawBoard();
+  piece.drawPiece();
+  piece.fall();
 }
+
+table(board);

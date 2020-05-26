@@ -8,8 +8,8 @@ let FPS = 50;
 let canvasWidth = 400;
 let canvasHeight = 640;
 
-let boardWidth = 10;
-let boardHeight = 20;
+let boardWidth = 10; // It is Y the widht of the board
+let boardHeight = 20; // It is X the height of the board
 
 let topMargin = 4; // Para el board
 
@@ -25,6 +25,7 @@ let cyan = "#00ced1";
 let blue = "#0000cd";
 
 let board = [];
+board.red
 
 /*
  * We need two extra lines, one each side, they are the limit of the canvas
@@ -206,6 +207,20 @@ var objectPiece = function () {
     return lose;
   };
 
+  /**
+   * Esta función revisa línea por línea para verificar si alguna línea tiene algún 
+   * espacio a 0 o vacio, si encuentra un espacio con cero, full row pasa a ser true
+   * La revisión se hace con Y primero y luego se revisa cada posición X 
+   * Cad posición Y representa una fila a revisar y cada X una columna de esa fila. 
+   * como sabemos que las 4 primeras filas no es necesario revisarlas, las omitimos
+   * indicandole a la Y que empieza por 4 (topMargin), luego que vaya bajando
+   * hasta el final. 
+   * Cuando se encuentra una fila llena, fullRow es true, así que 
+   * cuando acabe la revisión entrará en el siguiente if 
+   * esta llena. 
+   * 
+   * En esa última parte, lo que hacemos en el ciclo for, es decirle que 
+   */
   this.cleanRows = function () {
     let fullRow = true;
 
@@ -221,6 +236,7 @@ var objectPiece = function () {
       if (fullRow == true) {
         log("FIlA LLENA");
         for (let x = 1; x <= boardWidth; x++) {
+          log("row llena", board[y][x])
           board[y][x] = 0;
         }
       }
@@ -323,7 +339,7 @@ function cleanCanvas() {
   canvas.height = canvasHeight;
 }
 
-(function inicializa() {
+function inicializa() {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
 
@@ -333,11 +349,12 @@ function cleanCanvas() {
   piece = new objectPiece();
   initializeKeyboard();
   boardConstructor();
+  table(board);
 
   setInterval(() => {
     principal();
   }, 1000 / FPS);
-})();
+}
 
 function principal() {
   cleanCanvas();
@@ -346,4 +363,10 @@ function principal() {
   piece.fall();
 }
 
-table(board);
+/****************************Listening buttons**********/
+const startGame = document.getElementById("btnStart")
+log(startGame)
+startGame.addEventListener("mousedown",event =>{
+  log("hoa")
+  inicializa()
+})

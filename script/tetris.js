@@ -33,11 +33,11 @@ board.red
  * the rest are the border of the array.
  */
 function boardConstructor() {
-  for (let x = 0; x < boardHeight + 1; x++) {
+  for (let y = 0; y < boardHeight + 1; y++) {
     let arrow = [];
     let column = null;
-    for (let y = 0; y < boardWidth + 2; y++) {
-      if (x == boardHeight || y == 0 || y == boardWidth + 1) {
+    for (let x = 0; x < boardWidth + 2; x++) {
+      if (y == boardHeight || x == 0 || x == boardWidth + 1) {
         column = 1;
       } else {
         column = 0;
@@ -186,14 +186,12 @@ var objectPiece = function () {
   this.right = function () {
     if (this.collision(this.angle, this.y, this.x + 1) == false) {
       this.x++;
-      log("Derecha");
     }
   };
 
   this.down = function () {
     if (this.collision(this.angle, this.y + 1, this.x) == false) {
       this.y++;
-      log("Abajo");
     }
   };
 
@@ -233,12 +231,31 @@ var objectPiece = function () {
         }
       }
 
-      if (fullRow == true) {
+/*       if (fullRow == true) {
         log("FIlA LLENA");
         for (let x = 1; x <= boardWidth; x++) {
           log("row llena", board[y][x])
           board[y][x] = 0;
         }
+      } */
+      if(fullRow == true){
+        other: for (let x = 1; x <= boardWidth; x++){
+          continue other
+        }
+        
+        /**
+         * splice: quita la fila completa. y es la fila a quitar
+         * y el número la cantidad a quitar. [0] con eso le decimos 
+         */
+        const row = board.splice(y, 1)[0].fill(0)
+        log(board[y][0])
+        board.unshift(row)
+        
+        for(let y = 0; y <= boardWidth + 2; y++){
+          board[y][boardWidth - boardWidth] = 1
+          board[y][boardWidth + 1] = 1
+        }
+        table(board) 
       }
     }
   };

@@ -25,7 +25,7 @@ let cyan = "#00ced1";
 let blue = "#0000cd";
 
 let board = [];
-board.red
+// board.red
 
 /*
  * We need two extra lines, one each side, they are the limit of the canvas
@@ -77,12 +77,12 @@ let tableroCopia = [
 
 let piece;
 
-var objectPiece = function () {
+let objectPiece = function () {
   // Creación de un objeto
   this.x = 4;
   this.y = 0;
   this.angle = 0;
-  this.type = 0;
+  this.type = 0; // tipo de pieza 
   this.delay = 50;
   this.frame = 0;
 
@@ -270,6 +270,7 @@ var objectPiece = function () {
         }
       }
     }
+    table(board)
   };
 
   this.new();
@@ -387,3 +388,6 @@ startGame.addEventListener("mousedown",event =>{
   log("hoa")
   inicializa()
 })
+
+
+

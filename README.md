@@ -1,4 +1,5 @@
 # Tetris Game - Sargentogato
+
 Yo can play directly here https://sargentogato.github.io/Tetris-sg/
 
 ## Index
@@ -19,14 +20,16 @@ If you want to clone the repo to play around, improve the code or just to play, 
 Enjoy and share. Marlon Velásquez
 
 ## How to Play
+
 The only you have to do is, download the repo. Inside the folder you will find the follow structure
+
 - script folder /tetris.js and pieces.js
 - style folder / style.css
 - index.html on the main folder
 
-Don't worry for the rest of the files. 
+Don't worry for the rest of files.
 
-The only you have to do is, download the repo and ones done, get into the folder, unzip the file downloaded and you will get a folder callThe only you have to do is, download the repo and when is downloaded, unzip the file downloaded and you will get a folder call Tetris-sg-master, get into the folder and you will have the index.html, run the file and the game will start Tetris-sg-master
+The only you have to do is, download the repo, once downloaded, unzip the file. You will get a folder call Tetris-sg-master, get into and you will have the index.html file, run it, press start and enjoy.
 
 **To move the pieces, you just need the arrow buttons**
 
@@ -37,7 +40,13 @@ The only you have to do is, download the repo and ones done, get into the folder
 
 ## Upgrades
 
+#### 22 de mayo 2020
+
 - It has been added two buttons(**still not working**) start and play again
+
+#### 2 July 2020
+
+- The buttons work
 
 ## Changes
 

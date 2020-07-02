@@ -61,6 +61,6 @@ The only you have to do is, download the repo, once downloaded, unzip the file. 
 
 ## Thanks
 
-Thanks to Javier Muñiz(javiermunizyt on github) for his excelent HTML5 and JavaScript course, without it perhaps it wouldn't be posible this tetris.
+Thanks to Javier Muñiz(@javiermunizyt on github) for his excelent HTML5 and JavaScript course, without it perhaps it wouldn't be posible this tetris.
 
 **by Sargentogato **

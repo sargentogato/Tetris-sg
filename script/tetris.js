@@ -1,6 +1,13 @@
 let log = console.log;
 let table = console.table;
 
+window.addEventListener("resize", () => {
+  let widthWindows = innerWidth;
+  let heightWindows = innerHeight;
+  log(widthWindows);
+  log(heightWindows);
+});
+
 let canvas;
 let ctx;
 let FPS = 50;
@@ -82,7 +89,7 @@ let objectPiece = function () {
   this.x = 4;
   this.y = 0;
   this.angle = 0;
-  this.type = 0; // tipo de pieza 
+  this.type = 0; // tipo de pieza
   this.delay = 50;
   this.frame = 0;
 
@@ -124,7 +131,12 @@ let objectPiece = function () {
               break;
           }
           ctx.fillStyle = color;
-          ctx.fillRect((this.x + x - 1) * pieceWidth, (this.y + y - topMargin) * pieceHeight, pieceWidth, pieceHeight);
+          ctx.fillRect(
+            (this.x + x - 1) * pieceWidth,
+            (this.y + y - topMargin) * pieceHeight,
+            pieceWidth,
+            pieceHeight
+          );
         }
       }
     }
@@ -143,7 +155,8 @@ let objectPiece = function () {
         this.cleanRows();
 
         if (this.checkIfYouLose()) {
-          resetBoard();
+          alert("Game over");
+          // resetBoard();
         }
       }
     }
@@ -206,18 +219,18 @@ let objectPiece = function () {
   };
 
   /**
-   * Esta función revisa línea por línea para verificar si alguna línea tiene algún 
+   * Esta función revisa línea por línea para verificar si alguna línea tiene algún
    * espacio a 0 o vacio, si encuentra un espacio con cero, full row pasa a ser true
-   * La revisión se hace con Y primero y luego se revisa cada posición X 
-   * Cad posición Y representa una fila a revisar y cada X una columna de esa fila. 
+   * La revisión se hace con Y primero y luego se revisa cada posición X
+   * Cad posición Y representa una fila a revisar y cada X una columna de esa fila.
    * como sabemos que las 4 primeras filas no es necesario revisarlas, las omitimos
    * indicandole a la Y que empieza por 4 (topMargin), luego que vaya bajando
-   * hasta el final. 
-   * Cuando se encuentra una fila llena, fullRow es true, así que 
-   * cuando acabe la revisión entrará en el siguiente if 
-   * esta llena. 
-   * 
-   * En esa última parte, lo que hacemos en el ciclo for, es decirle que 
+   * hasta el final.
+   * Cuando se encuentra una fila llena, fullRow es true, así que
+   * cuando acabe la revisión entrará en el siguiente if
+   * esta llena.
+   *
+   * En esa última parte, lo que hacemos en el ciclo for, es decirle que
    */
   this.cleanRows = function () {
     let fullRow = true;
@@ -231,31 +244,31 @@ let objectPiece = function () {
         }
       }
 
-/*       if (fullRow == true) {
+      /*       if (fullRow == true) {
         log("FIlA LLENA");
         for (let x = 1; x <= boardWidth; x++) {
           log("row llena", board[y][x])
           board[y][x] = 0;
         }
       } */
-      if(fullRow == true){
-        other: for (let x = 1; x <= boardWidth; x++){
-          continue other
+      if (fullRow == true) {
+        other: for (let x = 1; x <= boardWidth; x++) {
+          continue other;
         }
-        
+
         /**
          * splice: quita la fila completa. y es la fila a quitar
-         * y el número la cantidad a quitar. [0] con eso le decimos 
+         * y el número la cantidad a quitar. [0] con eso le decimos
          */
-        const row = board.splice(y, 1)[0].fill(0)
-        log(board[y][0])
-        board.unshift(row)
-        
-        for(let y = 0; y <= boardWidth + 2; y++){
-          board[y][boardWidth - boardWidth] = 1
-          board[y][boardWidth + 1] = 1
+        const row = board.splice(y, 1)[0].fill(0);
+        log(board[y][0]);
+        board.unshift(row);
+
+        for (let y = 0; y <= boardWidth + 2; y++) {
+          board[y][boardWidth - boardWidth] = 1;
+          board[y][boardWidth + 1] = 1;
         }
-        table(board) 
+        table(board);
       }
     }
   };
@@ -270,7 +283,7 @@ let objectPiece = function () {
         }
       }
     }
-    table(board)
+    table(board);
   };
 
   this.new();
@@ -322,7 +335,12 @@ function drawBoard() {
             break;
         }
         ctx.fillStyle = color;
-        ctx.fillRect((x - 1) * pieceWidth, (y - topMargin) * pieceHeight, pieceWidth, pieceHeight);
+        ctx.fillRect(
+          (x - 1) * pieceWidth,
+          (y - topMargin) * pieceHeight,
+          pieceWidth,
+          pieceHeight
+        );
       }
     }
   }
@@ -382,12 +400,9 @@ function principal() {
 }
 
 /****************************Listening buttons**********/
-const startGame = document.getElementById("btnStart")
-log(startGame)
-startGame.addEventListener("mousedown",event =>{
-  log("hoa")
-  inicializa()
-})
-
-
-
+const startGame = document.getElementById("btnStart");
+log(startGame);
+startGame.addEventListener("mousedown", (event) => {
+  log("hoa");
+  inicializa();
+});

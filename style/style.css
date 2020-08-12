@@ -3,7 +3,7 @@
   --btn-secondary-color: red;
 }
 
-.main-box {
+.mainBox {
   display: flex;
   background-color: yellow;
   width: 100%;
@@ -18,7 +18,7 @@ canvas {
   height: 640px;
 }
 
-.button-box {
+.mainBox--button-box {
   margin-top: 1em;
   display: flex;
   width: 100%;
@@ -36,10 +36,10 @@ button {
   outline: none;
 }
 
-.btn-start {
+.button-box__btn-start {
   background-color: var(--btn-primary-color);
 }
 
-.btn-play-again {
+.button-box__btn-play-again {
   background-color: var(--btn-secondary-color);
 }

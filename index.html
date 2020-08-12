@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css" />
-    <title>Tetris - Sargentogato</title>
-  </head>
-  <body>
-    <div id="main-box" class="main-box">
-      <canvas id="canvas"></canvas>
-      <div class="button-box">
-        <button id="btnStart" class="btn-start">Start</button>
-        <button id="btnPlayAgain" class="btn-play-again">Play Again</button>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style/style.css" />
+  <title>Tetris - Sargentogato</title>
+</head>
+
+<body>
+  <div id="mainBox" class="mainBox">
+    <canvas id="canvas"></canvas>
+    <div class="mainBox--button-box">
+      <button id="btnStart" class="button-box__btn-start">Start</button>
+      <button id="btnPlayAgain" class="button-box__btn-play-again">Play Again</button>
     </div>
-    <script src="./script/pieces.js"></script>
-    <script src="./script/tetris.js"></script>
-  </body>
+  </div>
+  <script src="./script/pieces.js"></script>
+  <script src="./script/tetris.js"></script>
+</body>
+
 </html>

@@ -10,7 +10,8 @@ window.addEventListener("resize", () => {
 
 let canvas;
 let ctx;
-let FPS = 50;
+let FPS = 8000;
+let piece = null;
 
 let canvasWidth = 400;
 let canvasHeight = 640;
@@ -32,7 +33,6 @@ let cyan = "#00ced1";
 let blue = "#0000cd";
 
 let board = [];
-// board.red
 
 /*
  * We need two extra lines, one each side, they are the limit of the canvas
@@ -44,7 +44,7 @@ function boardConstructor() {
     let arrow = [];
     let column = null;
     for (let x = 0; x < boardWidth + 2; x++) {
-      if (y == boardHeight || x == 0 || x == boardWidth + 1) {
+      if (y === boardHeight || x === 0 || x === boardWidth + 1) {
         column = 1;
       } else {
         column = 0;
@@ -56,33 +56,31 @@ function boardConstructor() {
 }
 
 // (12 x 21)
-let tableroCopia = [
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-];
+// let tableroCopia = [
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+//   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+// ];
 
 /******************************Creando objeto********************************/
-
-let piece;
 
 let objectPiece = function () {
   // Creación de un objeto
@@ -150,9 +148,8 @@ let objectPiece = function () {
         this.cleanRows();
 
         if (this.checkIfYouLose()) {
-          // alert("Game over");
-          // resetBoard();
-          boardConstructor();
+          alert("Game over");
+          resetBoard();
         }
       }
     }
@@ -240,7 +237,8 @@ let objectPiece = function () {
         }
       }
 
-      if (fullRow == true) {
+      //Este if se repite internamente hasta que se recorre el boardWidth completamente
+      if (fullRow === true) {
         other: for (let x = 1; x <= boardWidth; x++) {
           continue other;
         }
@@ -257,7 +255,7 @@ let objectPiece = function () {
           board[y][boardWidth - boardWidth] = 1;
           board[y][boardWidth + 1] = 1;
         }
-        table(board);
+        // table(board);
       }
     }
   };
@@ -272,7 +270,7 @@ let objectPiece = function () {
         }
       }
     }
-    table(board);
+    // table(board);
   };
 
   this.newPiece();
@@ -282,12 +280,12 @@ let objectPiece = function () {
 /************************Resete Board***********************/
 
 function resetBoard() {
-  for (let y = 0; y < 21; y++) {
-    for (let x = 0; x < 12; x++) {
-      board[y][x] = tableroCopia[y][x];
+  for (let y = 1; y < boardHeight; y++) {
+    for (let x = 1; x < boardWidth - 1; x++) {
+      board[y][x] = 0;
     }
   }
-  boardConstructor();
+  table(board);
   log("RESET");
 }
 
@@ -388,6 +386,5 @@ function principal() {
 const startGame = document.getElementById("btnStart");
 log(startGame);
 startGame.addEventListener("mousedown", (event) => {
-  log("hoa");
   inicializa();
 });

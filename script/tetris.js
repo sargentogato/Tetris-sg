@@ -141,11 +141,11 @@ let objectPiece = function () {
     if (this.frame < this.delay) {
       this.frame++;
     } else {
-      if (this.collision(this.angle, this.y + 1, this.x) == false) {
+      if (this.collision(this.angle, this.y + 1, this.x) === false) {
         this.y++;
         this.frame = 0;
       } else {
-        this.fix();
+        this.fixPiece();
         this.newPiece();
         this.cleanRows();
 
@@ -264,7 +264,7 @@ let objectPiece = function () {
 
   /************************fix pieces************************/
 
-  this.fix = function () {
+  this.fixPiece = function () {
     for (let y = 0; y < 4; y++) {
       for (let x = 0; x < 4; x++) {
         if (pieces[this.type][this.angle][y][x] > 0) {

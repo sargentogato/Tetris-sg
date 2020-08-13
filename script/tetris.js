@@ -93,7 +93,7 @@ let objectPiece = function () {
   this.delay = 50;
   this.frame = 0;
 
-  this.new = function () {
+  this.newPiece = function () {
     this.type = Math.floor(Math.random() * 7);
     this.x = 4;
     this.y = 0;
@@ -131,12 +131,7 @@ let objectPiece = function () {
               break;
           }
           ctx.fillStyle = color;
-          ctx.fillRect(
-            (this.x + x - 1) * pieceWidth,
-            (this.y + y - topMargin) * pieceHeight,
-            pieceWidth,
-            pieceHeight
-          );
+          ctx.fillRect((this.x + x - 1) * pieceWidth, (this.y + y - topMargin) * pieceHeight, pieceWidth, pieceHeight);
         }
       }
     }
@@ -151,12 +146,13 @@ let objectPiece = function () {
         this.frame = 0;
       } else {
         this.fix();
-        this.new();
+        this.newPiece();
         this.cleanRows();
 
         if (this.checkIfYouLose()) {
-          alert("Game over");
+          // alert("Game over");
           // resetBoard();
+          boardConstructor();
         }
       }
     }
@@ -244,13 +240,6 @@ let objectPiece = function () {
         }
       }
 
-      /*       if (fullRow == true) {
-        log("FIlA LLENA");
-        for (let x = 1; x <= boardWidth; x++) {
-          log("row llena", board[y][x])
-          board[y][x] = 0;
-        }
-      } */
       if (fullRow == true) {
         other: for (let x = 1; x <= boardWidth; x++) {
           continue other;
@@ -286,7 +275,7 @@ let objectPiece = function () {
     table(board);
   };
 
-  this.new();
+  this.newPiece();
   log("Pieza Creada");
 }; // end object
 
@@ -298,6 +287,7 @@ function resetBoard() {
       board[y][x] = tableroCopia[y][x];
     }
   }
+  boardConstructor();
   log("RESET");
 }
 
@@ -335,12 +325,7 @@ function drawBoard() {
             break;
         }
         ctx.fillStyle = color;
-        ctx.fillRect(
-          (x - 1) * pieceWidth,
-          (y - topMargin) * pieceHeight,
-          pieceWidth,
-          pieceHeight
-        );
+        ctx.fillRect((x - 1) * pieceWidth, (y - topMargin) * pieceHeight, pieceWidth, pieceHeight);
       }
     }
   }

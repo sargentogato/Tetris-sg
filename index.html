@@ -12,7 +12,10 @@
 
   <body>
     <main class="main-box">
-      <h1>TETRIS</h1>
+      <div class="title">
+        <h1>TETRIS</h1>
+      </div>
+
       <div id="game-box" class="game-box">
         <div class="score-box">
           <div class="score-box__scoreboard">
@@ -21,7 +24,7 @@
 
             <p class="score-box__scoreboard-text-level">Level</p>
             <div class="score-box__scoreboard-level"><p id="level">0</p></div>
-            
+
             <p class="score-box__scoreboard-text-lines">Lines</p>
             <div class="score-box__scoreboard-lines"><p id="lines">0</p></div>
           </div>
@@ -30,14 +33,14 @@
         <div class="canvas-box">
           <canvas class="board" id="canvas"></canvas>
         </div>
-        
+
         <div class="button-box">
           <button id="btnStart" class="button-box__btn-start">Start</button>
           <button id="btnPlayAgain" class="button-box__btn-play-again">Play Again</button>
         </div>
 
         <div class="next-piece-box">
-          <canvas class="pieces" id="nextPiece"></canvas>
+          <canvas id="nextPiece" class="pieces"></canvas>
         </div>
       </div>
       <!--End mainBox-->

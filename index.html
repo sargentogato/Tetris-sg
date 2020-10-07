@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/main.css" />
+    <link rel="stylesheet" href="/style/scoreBox.css" />
+    <link rel="stylesheet" href="/style/canvasBox.css" />
+    <link rel="stylesheet" href="/style/nextPieceBox.css" />
+    <title>Tetris - Sargentogato</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./style/style.css" />
-  <title>Tetris - Sargentogato</title>
-</head>
+  <body>
+    <main class="main-box">
+      <h1>TETRIS</h1>
+      <div id="game-box" class="game-box">
+        <div class="score-box">
+          <div class="score-box__scoreboard">
+            <p class="score-box__scoreboard-text-score">Score</p>
+            <div class="score-box__scoreboard-score"><p id="score">0</p></div>
 
-<body>
-  <div id="mainBox" class="mainBox">
-    <canvas id="canvas"></canvas>
-    <div class="mainBox--button-box">
-      <button id="btnStart" class="button-box__btn-start">Start</button>
-      <button id="btnPlayAgain" class="button-box__btn-play-again">Play Again</button>
-    </div>
-  </div>
-  <script src="./script/pieces.js"></script>
-  <script src="./script/tetris.js"></script>
-</body>
+            <p class="score-box__scoreboard-text-level">Level</p>
+            <div class="score-box__scoreboard-level"><p id="level">0</p></div>
+            
+            <p class="score-box__scoreboard-text-lines">Lines</p>
+            <div class="score-box__scoreboard-lines"><p id="lines">0</p></div>
+          </div>
+        </div>
 
+        <div class="canvas-box">
+          <canvas class="board" id="canvas"></canvas>
+        </div>
+        
+        <div class="button-box">
+          <button id="btnStart" class="button-box__btn-start">Start</button>
+          <button id="btnPlayAgain" class="button-box__btn-play-again">Play Again</button>
+        </div>
+
+        <div class="next-piece-box">
+          <canvas class="pieces" id="nextPiece"></canvas>
+        </div>
+      </div>
+      <!--End mainBox-->
+    </main>
+
+    <script src="./script/pieces.js"></script>
+    <script src="./script/tetris.js"></script>
+    <script src="./script/scoreboard.js"></script>
+  </body>
 </html>

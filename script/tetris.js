@@ -24,15 +24,17 @@ let topMargin = 4; // Para el board
 let pieceWidth = 40;
 let pieceHeight = 40;
 
-let red = "#FF0000";
-let purple = "#800080";
-let orange = "#FF8c00";
-let yellow = "#ffd700";
-let green = "#008000";
-let cyan = "#00ced1";
-let blue = "#0000cd";
+let red = "#EF4800";
+let greenAqua = "#9AFFD9";
+let yellow = "#FFFF00";
+let pink = "#DDA0FF";
+let green = "#00FF9F";
+let melon = "#FFBA9A";
+let purple = "#6700A0";
 
 let board = [];
+let contador = 1
+let stoper = 1
 
 /*
  * We need two extra lines, one each side, they are the limit of the canvas
@@ -63,7 +65,7 @@ let objectPiece = function () {
   this.y = 0;
   this.angle = 0;
   this.type = 0; // tipo de pieza
-  this.delay = 50;
+  this.delay = 200;
   this.frame = 0;
 
   this.newPiece = function () {
@@ -82,10 +84,10 @@ let objectPiece = function () {
               color = red;
               break;
             case 2:
-              color = purple;
+              color = greenAqua;
               break;
             case 3:
-              color = orange;
+              color = yellow;
               break;
             case 4:
               color = yellow;
@@ -94,10 +96,10 @@ let objectPiece = function () {
               color = green;
               break;
             case 6:
-              color = cyan;
+              color = melon;
               break;
             case 7:
-              color = blue;
+              color = purple;
               break;
 
             default:
@@ -123,8 +125,9 @@ let objectPiece = function () {
         this.cleanRows();
 
         if (this.checkIfYouLose()) {
-          alert("Game over");
-          resetBoard();
+          while (stoper <= 1) {
+            finishGame() 
+          }
         }
       }
     }
@@ -202,7 +205,7 @@ let objectPiece = function () {
    */
   this.cleanRows = function () {
     let fullRow = true;
-
+    
     for (let y = topMargin; y < boardHeight; y++) {
       fullRow = true;
 
@@ -211,21 +214,25 @@ let objectPiece = function () {
           fullRow = false;
         }
       }
-
+      
       //Este if se repite internamente hasta que se recorre el boardWidth completamente
       if (fullRow === true) {
         other: for (let x = 1; x <= boardWidth; x++) {
           continue other;
         }
-
+        
         /**
          * splice: quita la fila completa. y es la fila a quitar
          * y el número la cantidad a quitar. [0] con eso le decimos
          */
         const row = board.splice(y, 1)[0].fill(0);
-        log(board[y][0]);
+        drawNumberLines()
+        scorePoints()
+        levels()
+      
         board.unshift(row);
 
+        // Pintando los laterales con 1
         for (let y = 0; y <= boardWidth + 2; y++) {
           board[y][boardWidth - boardWidth] = 1;
           board[y][boardWidth + 1] = 1;
@@ -254,10 +261,12 @@ let objectPiece = function () {
 
 function resetBoard() {
   for (let y = 1; y < boardHeight; y++) {
-    for (let x = 1; x < boardWidth - 1; x++) {
+    for (let x = 1; x < boardWidth + 1; x++) {
       board[y][x] = 0;
     }
   }
+  
+  cleanBoardScore()
   log("RESET");
 }
 
@@ -273,10 +282,10 @@ function drawBoard() {
             color = red;
             break;
           case 2:
-            color = purple;
+            color = greenAqua;
             break;
           case 3:
-            color = orange;
+            color = yellow;
             break;
           case 4:
             color = yellow;
@@ -285,10 +294,10 @@ function drawBoard() {
             color = green;
             break;
           case 6:
-            color = cyan;
+            color = melon;
             break;
           case 7:
-            color = blue;
+            color = purple;
             break;
 
           default:
@@ -356,7 +365,20 @@ function principal() {
 
 /****************************Listening buttons**********/
 const startGame = document.getElementById("btnStart");
+const playAgain = document.getElementById("btnPlayAgain")
 log(startGame);
+
 startGame.addEventListener("mousedown", (event) => {
   inicializa();
 });
+
+playAgain.addEventListener("mousedown", () => {
+  resetBoard()
+  stoper = 1
+})
+
+
+function finishGame() {
+  console.log("HAS PERDIDOOOOOOOOOOOOOOOOOOOOo")
+  stoper = 2
+}

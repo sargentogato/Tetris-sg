@@ -19,40 +19,52 @@ a {
   text-decoration: none;
 }
 
-@font-face{
-  font-family: 'Sketch Match';
-  src: url('../font/Sketch-Match.ttf') format('truetype');
+@font-face {
+  font-family: "Tequilla Sunrise";
+  src: url("../font/Tequilla-Sunrise.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sketch Match";
+  src: url("../font/Sketch-Match.ttf") format("truetype");
 }
 
 :root {
-  --color-primary-0:#0F0B05;
-  --color-primary-1:#A66800;
-  --color-primary-2:#FFE6BD;
-  --color-primary-3:#FF9F00;
-  --color-primary-4:#9C9996;
-  --color-primary-5: #08B;
-  --color-white:#ffffff;
-  --height-boxes:45%;
-  --text-boxes:40px;
+  --black-background: #000000;
+  --main-background: #002b36;
+  --grey-color: #9b9b9b;
+  --red-color: rgba(255, 0, 0, 0.9);
+  --color-buttons: #ff9f00;
+  --border-main-box: #a66800;
+  --color-primary-5: #08b;
+  --color-white: #ffffff;
+  --height-boxes: 45%;
+  --text-boxes: 22px;
+  --border-radius: 75px;
+}
+
+.title {
+  font-family: "Tequilla Sunrise";
+  color: white;
 }
 
 .main-box {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color:var(--color-primary-2);
+  background-color: var(--main-background);
 }
 
 /* 
  * Game box
  */
-.game-box{
+.game-box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 3fr 1fr;
   grid-gap: 2em;
   width: 1280px;
 }
-

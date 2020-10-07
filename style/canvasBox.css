@@ -1,0 +1,40 @@
+/* 
+ * Canvas Box
+ */
+
+.canvas-box {
+  width: 100%;
+  background-color: black;
+  /* border: 2px solid rgb(0, 0, 0); */
+}
+
+.canvas-box > canvas {
+  width: 400px;
+  height: 640px;
+  box-shadow: inset 5px 0 15px 1px var(--color-primary-5), inset -5px 0 15px 1px var(--color-primary-5), inset 0 -5px 15px 1px var(--color-primary-5); 
+}
+
+.button-box{
+  display: flex;
+  justify-content: center;
+  gap:2em;
+  height: 20%;
+  grid-column-start: 2;
+  grid-column-end: 2;
+
+}
+
+button {
+  width: 40%;
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 1.2vw;
+  padding: 0.2em 0.5em;
+  border-radius: 35px;
+  outline: none;
+}
+
+.button-box__btn-start,
+.button-box__btn-play-again {
+  background-color: var(--color-primary-4);
+}

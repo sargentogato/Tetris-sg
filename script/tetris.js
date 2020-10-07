@@ -1,13 +1,6 @@
 let log = console.log;
 let table = console.table;
 
-window.addEventListener("resize", () => {
-  let widthWindows = innerWidth;
-  let heightWindows = innerHeight;
-  log(widthWindows);
-  log(heightWindows);
-});
-
 let canvas;
 let ctx;
 let FPS = 8000;
@@ -33,8 +26,8 @@ let melon = "#FFBA9A";
 let purple = "#6700A0";
 
 let board = [];
-let contador = 1
-let stoper = 1
+let contador = 1;
+let stoper = 1;
 
 /*
  * We need two extra lines, one each side, they are the limit of the canvas
@@ -43,7 +36,7 @@ let stoper = 1
  */
 function boardConstructor() {
   for (let y = 0; y < boardHeight + 1; y++) {
-    let arrow = [];
+    let row = [];
     let column = null;
     for (let x = 0; x < boardWidth + 2; x++) {
       if (y === boardHeight || x === 0 || x === boardWidth + 1) {
@@ -51,9 +44,9 @@ function boardConstructor() {
       } else {
         column = 0;
       }
-      arrow.push(column);
+      row.push(column);
     }
-    board.push(arrow);
+    board.push(row);
   }
 }
 
@@ -126,7 +119,7 @@ let objectPiece = function () {
 
         if (this.checkIfYouLose()) {
           while (stoper <= 1) {
-            finishGame() 
+            finishGame();
           }
         }
       }
@@ -205,7 +198,7 @@ let objectPiece = function () {
    */
   this.cleanRows = function () {
     let fullRow = true;
-    
+
     for (let y = topMargin; y < boardHeight; y++) {
       fullRow = true;
 
@@ -214,22 +207,22 @@ let objectPiece = function () {
           fullRow = false;
         }
       }
-      
+
       //Este if se repite internamente hasta que se recorre el boardWidth completamente
       if (fullRow === true) {
         other: for (let x = 1; x <= boardWidth; x++) {
           continue other;
         }
-        
+
         /**
          * splice: quita la fila completa. y es la fila a quitar
          * y el número la cantidad a quitar. [0] con eso le decimos
          */
         const row = board.splice(y, 1)[0].fill(0);
-        drawNumberLines()
-        scorePoints()
-        levels()
-      
+        drawNumberLines();
+        scorePoints();
+        levels();
+
         board.unshift(row);
 
         // Pintando los laterales con 1
@@ -265,8 +258,8 @@ function resetBoard() {
       board[y][x] = 0;
     }
   }
-  
-  cleanBoardScore()
+
+  cleanBoardScore();
   log("RESET");
 }
 
@@ -365,7 +358,7 @@ function principal() {
 
 /****************************Listening buttons**********/
 const startGame = document.getElementById("btnStart");
-const playAgain = document.getElementById("btnPlayAgain")
+const playAgain = document.getElementById("btnPlayAgain");
 log(startGame);
 
 startGame.addEventListener("mousedown", (event) => {
@@ -373,12 +366,11 @@ startGame.addEventListener("mousedown", (event) => {
 });
 
 playAgain.addEventListener("mousedown", () => {
-  resetBoard()
-  stoper = 1
-})
-
+  resetBoard();
+  stoper = 1;
+});
 
 function finishGame() {
-  console.log("HAS PERDIDOOOOOOOOOOOOOOOOOOOOo")
-  stoper = 2
+  console.log("HAS PERDIDOOOOOOOOOOOOOOOOOOOOo");
+  stoper = 2;
 }

@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style/main.css" />
-    <link rel="stylesheet" href="/style/scoreBox.css" />
+    <link rel="stylesheet" href="/style/boxes.css" />
     <link rel="stylesheet" href="/style/canvasBox.css" />
-    <link rel="stylesheet" href="/style/nextPieceBox.css" />
+    <link rel="stylesheet" href="/style/historicalBox.css" />
     <title>Tetris - Sargentogato</title>
   </head>
 
@@ -30,8 +30,8 @@
           </div>
         </div>
 
-        <div class="canvas-box">
-          <canvas class="board" id="canvas"></canvas>
+        <div id="canvasBox" class="canvas-box">
+          <canvas id="canvas" class="board"></canvas>
         </div>
 
         <div class="button-box">
@@ -39,12 +39,19 @@
           <button id="btnPlayAgain" class="button-box__btn-play-again">Play Again</button>
         </div>
 
-        <div class="next-piece-box">
-          <canvas id="nextPiece" class="pieces"></canvas>
-        </div>
+        <!-- <div id="historicalBox" class="historical-box">
+          <div class="historical-box__history-scores">
+            <p class="historical-box__history-scores__text">Highest Score</p>
+            <div class="historical-box__history-scores__score"><p id="score">0</p></div>
+
+            <p class="historical-box__history-scores__text">Current Score</p>
+            <div class="historical-box__history-scores__score"><p id="lines">0</p></div>
+          </div>
+        </div> -->
       </div>
-      <!--End mainBox-->
+      <!--Game Box end-->
     </main>
+    <!--End mainBox-->
 
     <script src="./script/pieces.js"></script>
     <script src="./script/tetris.js"></script>

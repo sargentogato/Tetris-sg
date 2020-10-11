@@ -40,13 +40,18 @@ The only you have to do is, download the repo, once downloaded, unzip the file. 
 
 ## Upgrades
 
-#### 22 de mayo 2020
+#### 11 Octubre 2020
 
-- It has been added two buttons(**still not working**) start and play again
+- Added the score box. Now you can see the number of lines, the level you are and the score
+- The button "Play Again" works
 
 #### 2 July 2020
 
 - The buttons work
+
+#### 22 de mayo 2020
+
+- It has been added two buttons(**still not working**) start and play again
 
 ## Changes
 
@@ -58,6 +63,11 @@ The only you have to do is, download the repo, once downloaded, unzip the file. 
   - The drawPieces method (switch statement instead of if statement)
   - the drawBoard function (switch statement instead of if statement)
 - It has been separated the pieces variable to a new file call pieces.js
+
+#### 11 Octubre 2020
+
+- The design it has been changed entirely
+- It has been corrected some bugs when the "Play again" was pressed
 
 ## Thanks
 

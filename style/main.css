@@ -1,15 +1,12 @@
-html {
+Html {
   box-sizing: border-box;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: sans-serif;
   font-size: 16px;
 }
 
 *,
 *::after,
-*::before,
-body,
-form,
-p {
+*::before {
   padding: 0;
   margin: 0;
   box-sizing: inherit;
@@ -64,7 +61,7 @@ a {
 .game-box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 3fr 1fr;
+  grid-template-rows: 3fr 100%;
   grid-gap: 2em;
   width: 1280px;
 }

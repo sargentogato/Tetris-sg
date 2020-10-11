@@ -9,9 +9,14 @@
 .canvas-box > canvas {
   width: 400px;
   height: 640px;
-  box-shadow: inset 5px 0 15px 1px var(--color-primary-5), inset -5px 0 15px 1px var(--color-primary-5), inset 0 -5px 15px 1px var(--color-primary-5);
   background-color: var(--black-background);
   border: 1px solid var(--border-main-box);
+  border-radius: 10px;
+}
+
+.light-on > canvas {
+  border: 3px solid rgba(255, 255, 0, 1);
+  box-shadow: inset 5px 0 15px 1px var(--color-primary-5), inset -5px 0 15px 1px var(--color-primary-5), inset 0 -5px 15px 1px var(--color-primary-5);
 }
 
 .button-box {

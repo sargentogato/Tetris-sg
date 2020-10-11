@@ -26,7 +26,6 @@ let melon = "#FFBA9A";
 let purple = "#6700A0";
 
 let board = [];
-let contador = 1;
 let stoper = 1;
 
 /*
@@ -58,9 +57,10 @@ let objectPiece = function () {
   this.y = 0;
   this.angle = 0;
   this.type = 0; // tipo de pieza
-  this.delay = 200;
+  this.delay = 130;
   this.frame = 0;
 
+  console.log(this.delay);
   this.newPiece = function () {
     this.type = Math.floor(Math.random() * 7);
     this.x = 4;
@@ -118,6 +118,7 @@ let objectPiece = function () {
         this.cleanRows();
 
         if (this.checkIfYouLose()) {
+          lightControler(false);
           while (stoper <= 1) {
             finishGame();
           }
@@ -253,7 +254,7 @@ let objectPiece = function () {
 /************************Resete Board***********************/
 
 function resetBoard() {
-  for (let y = 1; y < boardHeight; y++) {
+  for (let y = 0; y < boardHeight; y++) {
     for (let x = 1; x < boardWidth + 1; x++) {
       board[y][x] = 0;
     }
@@ -261,6 +262,7 @@ function resetBoard() {
 
   cleanBoardScore();
   log("RESET");
+  table(board);
 }
 
 /************************Draw Board************************/
@@ -342,7 +344,7 @@ function inicializa() {
   piece = new objectPiece();
   initializeKeyboard();
   boardConstructor();
-  table(board);
+  table(board); //console table
 
   setInterval(() => {
     principal();
@@ -363,14 +365,20 @@ log(startGame);
 
 startGame.addEventListener("mousedown", (event) => {
   inicializa();
+  lightControler(true);
 });
 
 playAgain.addEventListener("mousedown", () => {
   resetBoard();
+  lightControler(true);
+  piece.delay = 130;
   stoper = 1;
 });
 
 function finishGame() {
+  contador = 1;
+  counterLevel = 0;
+  levelNumber = 0;
   console.log("HAS PERDIDOOOOOOOOOOOOOOOOOOOOo");
   stoper = 2;
 }

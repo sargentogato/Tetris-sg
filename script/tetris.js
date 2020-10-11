@@ -57,7 +57,7 @@ let objectPiece = function () {
   this.y = 0;
   this.angle = 0;
   this.type = 0; // tipo de pieza
-  this.delay = 130;
+  this.delay = 300;
   this.frame = 0;
 
   console.log(this.delay);

@@ -1,0 +1,26 @@
+/* 
+ * Next piece
+ */
+
+.historical-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.historical-box__history-scores {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+  height: var(--height-boxes);
+  border: 5px solid var(--grey-color);
+  border-radius: var(--border-radius);
+  background-color: var(--main-background);
+}
